@@ -1,4 +1,5 @@
 export { Control } from './Control'
 export { ImagePreview } from './ImagePreview'
+export { FileList } from './FileList'
 export { Root } from './Root'
 export { Trigger } from './Trigger'
