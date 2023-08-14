@@ -1,12 +1,18 @@
 'use client'
 import * as Select from '@radix-ui/react-select'
-import { Check, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
+import { ReactNode } from 'react'
 
-export function SelectInput() {
+export interface SelectInputProps {
+  children: ReactNode
+  placeholder: string
+}
+
+export function SelectInput({ children, placeholder }: SelectInputProps) {
   return (
     <Select.Root>
       <Select.Trigger className="flex h-11 w-full items-center justify-between gap-2 rounded-lg border border-zinc-300 px-3 py-2 shadow-sm data-[placeholder]:text-zinc-600">
-        <Select.Value className="text-black" placeholder="Select a country" />
+        <Select.Value className="text-black" placeholder={placeholder} />
         <Select.Icon>
           <ChevronDown className="h-5 w-5 text-zinc-500" />
         </Select.Icon>
@@ -18,17 +24,7 @@ export function SelectInput() {
           className="z-10 w-[--radix-select-trigger-width] overflow-hidden rounded-lg border border-zinc-200 bg-white"
           sideOffset={8}
         >
-          <Select.Viewport>
-            <Select.Item
-              value="BR"
-              className="flex items-center justify-between gap-2 px-3 py-2.5 outline-none data-[highlighted]:bg-zinc-50"
-            >
-              <Select.ItemText className="text-black">Brazil</Select.ItemText>
-              <Select.ItemIndicator>
-                <Check className="h-4 w-4 text-violet-500" />
-              </Select.ItemIndicator>
-            </Select.Item>
-          </Select.Viewport>
+          <Select.Viewport>{children}</Select.Viewport>
         </Select.Content>
       </Select.Portal>
     </Select.Root>
